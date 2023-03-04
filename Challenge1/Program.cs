@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 /*
  
@@ -29,6 +25,51 @@ namespace Challenge1
     {
         static void Main(string[] args)
         {
+            while (true)
+            {
+                if (!Initiate())
+                    break;
+                Console.Clear();
+            }
+            
+        }
+
+        private static bool Initiate()
+        {
+
+            // For this challenge i thought of two solutions, one with a counter and the other using regex.
+            Console.WriteLine("Challenge 1: Evaluate order of parenthesis");
+            Console.WriteLine(new string('-', 50));
+            Console.Write("Input the text to evaluate: ");
+            string text = Console.ReadLine();
+
+            // We check the size constraint.
+            if (text.Length > 100)
+            {
+                Console.WriteLine("Excediste los 100 caracteres...");
+                return true;
+            }
+
+            //Here we can change between Solution1 or Solution2
+            Console.Write("\nResult: ");
+            bool result = Solve.UsingSolution(new Solution2(), text); //new Solution1() or new Solution2()
+            if (result)
+                Console.WriteLine("VALID order of parenthesis. Nice!");
+            else
+                Console.WriteLine("UNVALID order of parenthesis. Needs a check!");
+
+            Console.Write("Do you want to validate another text ? [y]: ");
+            return Console.ReadLine() == "y" ? true : false;
+            
+        }
+
+    }
+
+    class Solve
+    {
+        public static bool UsingSolution(ISolutionChallenge1 solution, string text)
+        {
+            return solution.Resolve(text);
         }
     }
 }
