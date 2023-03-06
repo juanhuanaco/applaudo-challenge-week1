@@ -27,42 +27,44 @@ namespace Challenge1
         {
             while (true)
             {
-                if (!Initiate())
+                if (!ExecChallenge1())
                     break;
                 Console.Clear();
             }
             
         }
 
-        private static bool Initiate()
+        /**
+         * This method solves the Challenge, and returns a boolean value indicating if the user wants to restart the
+         * application.
+         */
+        private static bool ExecChallenge1()
         {
 
             // For this challenge i thought of two solutions, one with a counter and the other using regex.
-            Console.WriteLine("Challenge 1: Evaluate order of parenthesis");
+            Console.WriteLine("Welcome to Challenge 1: Parenthesis order checking");
             Console.WriteLine(new string('-', 50));
             Console.Write("Input the text to evaluate: ");
             string text = Console.ReadLine();
+            Console.Write("\nResult: ");
 
             // We check the size constraint.
-            if (text.Length > 100)
+            if ( !(text.Length > 100) )
             {
-                Console.WriteLine("Excediste los 100 caracteres...");
-                return true;
+                //Here we can change between Solution1 or Solution2
+                bool result = Solve.UsingSolution(new Solution2(), text); //new Solution1() or new Solution2()
+                Console.WriteLine(
+                    result
+                    ? "VALID order of parenthesis. Nice!"
+                    : "UNVALID order of parenthesis. Needs a check!"
+                );
             }
-
-            //Here we can change between Solution1 or Solution2
-            Console.Write("\nResult: ");
-            bool result = Solve.UsingSolution(new Solution2(), text); //new Solution1() or new Solution2()
-            if (result)
-                Console.WriteLine("VALID order of parenthesis. Nice!");
             else
-                Console.WriteLine("UNVALID order of parenthesis. Needs a check!");
-
-            Console.Write("Do you want to validate another text ? [y]: ");
-            return Console.ReadLine() == "y" ? true : false;
+                Console.WriteLine("Excediste los 100 caracteres...");
             
+            Console.Write("Do you want to validate another text ? [y]: ");
+            return Console.ReadLine() == "y";
         }
-
     }
 
     class Solve
