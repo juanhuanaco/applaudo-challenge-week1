@@ -10,7 +10,7 @@ namespace Challenge1
             if ( !(text.Contains("(") || text.Contains(")")) ) return false;
 
             text = CleanString(text);
-            Regex rx = new Regex(@"\(\)");
+            var rx = new Regex(@"\(\)");
             while(true)
             {
                 if (rx.IsMatch(text))
@@ -18,13 +18,13 @@ namespace Challenge1
                 else
                     break;
             }
-            return (text.Length == 0) ? true : false;
+            return text.Length == 0;
         }
 
         //Removes characters other than ( or )
         private string CleanString (string dirtyString)
         {
-            string cleanedString = "";
+            var cleanedString = "";
             foreach(char letter in dirtyString)
             {
                 if(letter == '(' || letter == ')')

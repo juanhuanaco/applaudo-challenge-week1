@@ -2,7 +2,7 @@
 
 namespace Challenge1
 {
-    class Solution1 : ISolutionChallenge1
+    internal class Solution1 : ISolutionChallenge1
     {
         public bool Resolve(string text)
         {
@@ -15,10 +15,11 @@ namespace Challenge1
                     counter++;
                 else if (letter == ')')
                     counter--;
+
                 if (counter == 255) // -1 = 255 Overflowing
                     return false;
             }
-            return (counter == 0) ? true : false;
+            return counter == 0;
         }
     }
 }

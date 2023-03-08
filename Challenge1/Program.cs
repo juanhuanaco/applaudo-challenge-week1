@@ -45,22 +45,22 @@ namespace Challenge1
             Console.WriteLine("Welcome to Challenge 1: Parenthesis order checking");
             Console.WriteLine(new string('-', 50));
             Console.Write("Input the text to evaluate: ");
-            string text = Console.ReadLine();
+            var text = Console.ReadLine() ?? "";
             Console.Write("\nResult: ");
 
             // We check the size constraint.
             if ( !(text.Length > 100) )
             {
                 //Here we can change between Solution1 or Solution2
-                bool result = Solve.UsingSolution(new Solution2(), text); //new Solution1() or new Solution2()
+                var result = Solve.UsingSolution(new Solution1(), text); //new Solution1() or new Solution2()
                 Console.WriteLine(
                     result
                     ? "VALID order of parenthesis. Nice!"
-                    : "UNVALID order of parenthesis. Needs a check!"
+                    : "INVALID order of parenthesis. Needs a check!"
                 );
             }
             else
-                Console.WriteLine("Excediste los 100 caracteres...");
+                Console.WriteLine("You exceeded 100 characters...");
             
             Console.Write("Do you want to validate another text ? [y]: ");
             return Console.ReadLine() == "y";
