@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 /*
 Create a function taking a positive integer as its parameter and returning a string containing the
 Roman Numeral representation of that integer.
@@ -33,10 +28,40 @@ More about roman numerals - http://en.wikipedia.org/wiki/Roman numerals
 
 namespace Challenge2
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
+            while (true)
+            {
+                if (!ExecChallenge2())
+                    break;
+                Console.Clear();
+            }
+            
+        }
+
+        /**
+         * This method solves the Challenge, and returns a boolean value indicating if the user wants to restart the
+         * application.
+         */
+        static bool ExecChallenge2()
+        {
+            Console.WriteLine("Welcome to Challenge 2: Roman Numeral");
+            Console.WriteLine(new string('-', 50));
+            Console.Write("Insert the integer number you desire to convert to a roman numeral: ");
+            var numberAsText = Console.ReadLine();
+            Console.Write("Answer: ");
+
+            Console.WriteLine(
+                int.TryParse(numberAsText, out int number)
+                ? RomanConvert.Solve(number)
+                : "You didn't type a valid integer number"
+            );
+
+            Console.Write("\nDo you want to type another number? [y]: ");
+            return Console.ReadLine() == "y";
+
         }
     }
 }
