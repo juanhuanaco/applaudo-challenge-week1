@@ -39,7 +39,6 @@ namespace Challenge2
                         romanNumber.Insert(0, $"{letterFives[i]}{new string(letterOnes[i], 3)}"); break;
                     case '9':
                         romanNumber.Insert(0, $"{letterOnes[i]}{letterOnes[i + 1]}"); break;
-                    default: break;
                 }
             }
             return romanNumber.ToString();
