@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 /*
 When you post a message on Facebook, depending on the number of people who like your post,
@@ -21,11 +18,53 @@ message based on the above pattern.
 
 namespace Challenge3
 {
-    internal class Program
+    class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-           
+            while (true)
+            {
+                if (!ExecChallenge3())
+                    break;
+                Console.Clear();
+            }
         }
+
+        static bool ExecChallenge3()
+        {
+            var friends = new List<string>();
+            string message;
+
+            Console.WriteLine("Welcome to Challenge 3: Who likes my post ?");
+            Console.WriteLine(new string('-', 50));
+
+            
+            while (true)
+            {
+                Console.Write("Enter a username: ");
+                var friend = Console.ReadLine();
+                if (string.IsNullOrEmpty(friend))
+                    break;
+                friends.Add(friend);
+            }
+            
+            switch (friends.Count)
+            {
+                case 0:
+                    message = ""; break;
+                case 1:
+                    message = $"{friends[0]} likes your post."; break;
+                case 2:
+                    message = $"{friends[0]} and {friends[1]} like your post."; break;
+                default: 
+                    message = $"{friends[0]}, {friends[1]} and {friends.Count - 2} others like your post."; break;
+            }
+
+            Console.WriteLine("\n"+message);
+            Console.Write("Do you want to run the program again ? [y]: ");
+            return Console.ReadLine() == "y";
+        }
+
     }
+
 }
